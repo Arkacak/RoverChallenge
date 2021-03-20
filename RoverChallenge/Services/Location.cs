@@ -16,6 +16,8 @@ namespace RoverChallenge.Services
         private readonly int _boundaryX;
         private readonly int _boundaryY;
         private readonly Rover _returnModel;
+        private int x;
+        private int y;
 
         public Location(Rover returnModel, int boundaryY, int boundaryX)
         {
@@ -77,6 +79,9 @@ namespace RoverChallenge.Services
 
         public void MoveForward()
         {
+            x = _returnModel.XCoordinate;
+            y = _returnModel.YCoordinate;
+
             if (_returnModel.Direction == Direction.N)
                 _returnModel.YCoordinate++;
             else if (_returnModel.Direction == Direction.S)
@@ -94,7 +99,7 @@ namespace RoverChallenge.Services
             if (_returnModel.XCoordinate < 0 || _returnModel.XCoordinate > _boundaryX || _returnModel.YCoordinate < 0 ||
                 _returnModel.YCoordinate > _boundaryY)
                 return
-                    $"Rover cannot move because it reached boundaries. Currently location : ({_returnModel.XCoordinate},{_returnModel.YCoordinate})";
+                    $"Rover cannot move because it reached boundaries. Currently location : ({x},{y})";
             return null;
         }
     }
