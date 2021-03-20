@@ -39,6 +39,9 @@ namespace RoverChallenge.Services
                     case 'R':
                         RotateRight();
                         break;
+                    default:
+                        _returnModel.Message = $"Invalid move ! ({item})";
+                        break;
                 }
 
                 if (!string.IsNullOrEmpty(_returnModel.Message))
