@@ -25,7 +25,7 @@ namespace RoverChallenge
                 else
                 {
                     Console.WriteLine("Please enter rover's starting location (format : 1,1,N)");
-                    var roverLocation = Console.ReadLine()?.Split(',').ToList();
+                    var roverLocation = Console.ReadLine()?.ToUpper().Split(',').ToList();
 
                     if (roverLocation != null && roverLocation.Count() == 3)
                     {
@@ -35,7 +35,7 @@ namespace RoverChallenge
                         var service = new Location(rover, int.Parse(text[0]), int.Parse(text[1]));
 
                         Console.WriteLine("Please enter moves order! ");
-                        var moveList = Console.ReadLine().Trim().ToList();
+                        var moveList = Console.ReadLine().ToUpper().Trim().ToList();
 
                         rover = service.MoveRover(moveList);
                         Console.WriteLine(!string.IsNullOrEmpty(rover.Message)
