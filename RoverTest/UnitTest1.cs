@@ -1,6 +1,4 @@
-using System;
 using System.Collections.Generic;
-using Microsoft.VisualStudio.TestPlatform.ObjectModel;
 using RoverChallenge.Models;
 using RoverChallenge.Services;
 using Xunit;
@@ -12,7 +10,6 @@ namespace RoverTest
         [Fact]
         public void MoveOrder_First_Case()
         {
-
             var rover = new Rover
             {
                 Direction = Direction.N,
@@ -22,7 +19,7 @@ namespace RoverTest
             };
 
             var service = new Location(rover, 5, 5);
-            List<char> moves = new List<char> { 'L','M' ,'L','M','L','M','L','M','M'};
+            var moves = new List<char> {'L', 'M', 'L', 'M', 'L', 'M', 'L', 'M', 'M'};
             service.MoveRover(moves);
 
             var returnedMessage =
@@ -30,12 +27,12 @@ namespace RoverTest
 
             var actualMessage = "XPos: 1, YPos: 3, Direction : N";
 
-            Assert.Equal(returnedMessage,actualMessage);
+            Assert.Equal(returnedMessage, actualMessage);
         }
+
         [Fact]
         public void MoveOrder_Second_Case()
         {
-
             var rover = new Rover
             {
                 Direction = Direction.E,
@@ -45,7 +42,7 @@ namespace RoverTest
             };
 
             var service = new Location(rover, 5, 5);
-            List<char> moves = new List<char> { 'M', 'M', 'R', 'M', 'M', 'R', 'M', 'R', 'R' ,'M'};
+            var moves = new List<char> {'M', 'M', 'R', 'M', 'M', 'R', 'M', 'R', 'R', 'M'};
             service.MoveRover(moves);
 
             var returnedMessage =
@@ -55,10 +52,10 @@ namespace RoverTest
 
             Assert.Equal(returnedMessage, actualMessage);
         }
+
         [Fact]
         public void MoveOrder_OutBoundary_Case()
         {
-
             var rover = new Rover
             {
                 Direction = Direction.N,
@@ -68,10 +65,10 @@ namespace RoverTest
             };
 
             var service = new Location(rover, 3, 3);
-            List<char> moves = new List<char> { 'M', 'M'};
-            service.MoveRover(moves);
+            var moves = new List<char> {'M', 'M', 'M'};
+            rover = service.MoveRover(moves);
 
-            var returnedMessage = $"Rover cannot move because it reached boundaries. Currently location : ({rover.XCoordinate},{rover.YCoordinate})";
+            var returnedMessage = rover.Message;
 
             var actualMessage = "Rover cannot move because it reached boundaries. Currently location : (1,3)";
 
